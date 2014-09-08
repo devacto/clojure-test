@@ -4,10 +4,15 @@
             [ring.mock.request :as mock]))
 
 (deftest test-app
-  (testing "main route"
+  (testing "main route should return Hello World"
     (let [response (app (mock/request :get "/"))]
       (is (= (:status response) 200))
-      (is (= (:body response) "Hello World"))))
+      (is (= (:body response) "{\"hello\":\"Hello World\"}"))))
+  
+  (testing "sum should return correct result"
+    (let [response (app (mock/request :get "/sum/2/3"))]
+      (is (= (:status response) 200))
+      (is (= (:body response) "{\"result\":\"5\"}"))))
   
   (testing "not-found route"
     (let [response (app (mock/request :get "/invalid"))]
