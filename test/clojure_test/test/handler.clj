@@ -16,4 +16,8 @@
   
   (testing "not-found route"
     (let [response (app (mock/request :get "/invalid"))]
-      (is (= (:status response) 404)))))
+      (is (= (:status response) 404))))
+
+  (testing "animals should get animals"
+    (let [response (app (mock/request :get "/animals"))]
+      (is (= (:status response) 200)))))

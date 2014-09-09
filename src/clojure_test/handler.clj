@@ -23,6 +23,9 @@
     {:status 200
      :body {:result (Integer/toString result)}}))
 
+(defn- victor []
+  println "Hello!")
+
 (defroutes app-routes
   (GET "/sum/:x1/:x2" [x1 x2] (calculate-sum (read-string x1) (read-string x2)))
   (GET "/" [] hello-world)
